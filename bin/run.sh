@@ -38,6 +38,6 @@ docker run --rm \
        -v $HOME/.docker_qt_config:/home/$DOCKER_USER/.config \
        -v $XKB_DIR:/usr/share/X11/xkb \
        --name $DOCKER_CONTAINER \
-       accso/plantuml-qeditor:latest 
+       accso/docker-plantuml-qeditor:latest 
 
 #        -v /usr/lib/xorg/modules/dri:/usr/lib/xorg/modules/dri 
