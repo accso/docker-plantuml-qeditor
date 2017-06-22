@@ -26,8 +26,7 @@ RUN apt-get update \
     && cd plantumlqeditor-master \
     && cmake -G "Unix Makefiles" \
     && qmake \
-    && make
-RUN cd /tmp/install/plantumlqeditor-master \
+    && make \
     && cp -r plantumlqeditor assistant.xml icons /opt/run \
     && cd /tmp \
     && rm -rf /tmp/install \
@@ -38,7 +37,6 @@ RUN cd /tmp/install/plantumlqeditor-master \
 	  unzip \
     && DEBIAN_FRONTEND=noninteractive apt-get -y autoremove
 COPY assets/docker-entrypoint.sh /docker-entrypoint.sh
-#COPY assets/plantuml /usr/bin/plantuml
 COPY assets/PlantUMLEditor.conf /opt/etc
 COPY assets/QtProject.conf /opt/etc
 ENTRYPOINT [ "/docker-entrypoint.sh" ]

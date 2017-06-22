@@ -5,16 +5,17 @@ This is a Docker container based on Debian Duster with PLANT-UML and QEditor ins
 
 The container uses the approach of letting the application communicate with the X server running on the host by using specific X11 files located on the host server. The application can be started as though it were residing on the host server. The mounted files and directories are as follows:
 
+ * `/tmp/.X11-unix`
  * `/etc/machine-id`
- * `$HOME/.Xauthority`
  * `/usr/share/X11/xkb`
+ * `$HOME/.Xauthority`
 
 ## Accessing Plant-UML files from outside the container
 
 The aim of the container is to let the user consistently read and write Plant-UML files located on the host server without having to worry about mismatching UID or GID. In order to achieve this the following measures have been taken:
 
- * install a user (`plantuml`) in the container and run the application using that user and its default group,
- * dynamically change the UID of the user and the GID of its group to match the UID and GID of the host user starting the container,
+ * provide a user (`plantuml`) in the container and run the application using that user and its default group,
+ * dynamically change the UID of that user and the GID of its group to match the UID and GID of the host user starting the container,
  * add the username of the calling user to the container name so that possible several users can call the run script and have seperate containers without collision,
  * map the home directory of the calling user as `home_on_host` in the home directory of user `plantuml`,
  * map the path of a PlantUML file passed as parameter to the run script to the mounted path inside the container,
